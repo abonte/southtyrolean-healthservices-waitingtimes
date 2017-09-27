@@ -11,11 +11,11 @@ import json
 def submit():
     form = SearchForm()
     r = requests.get('http://daten.buergernetz.bz.it/services/WaitLists_Data/json')
-    with open('../WaitLists_Data.json') as data_file:    
-        data = json.load(data_file)
+    #with open('../WaitLists_Data.json') as data_file:    
+     #   data = json.load(data_file)
     
-    v=data
-   # v = demjson.decode(r.text)
+    #v=data
+    v = demjson.decode(r.text)
     services=set([])
     for i in v:
         services.add(i['activityDescriptionIt'])
