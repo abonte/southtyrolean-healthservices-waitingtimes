@@ -8,7 +8,7 @@ The data are taken from the [Open Data Alto Adige/Suedtirol/South Tyrol portal](
 
 ### Prerequisites
 
-In order to execute the application locally, you need Python 3.x and pip.
+In order to execute the application locally, you need Python 3.x, pip and gunicorn.
 If you want to create an isolated Python environment, you can install [virtualenv](https://pypi.python.org/pypi/virtualenv)
 
 ```
