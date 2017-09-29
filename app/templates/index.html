@@ -9,7 +9,8 @@
     </a>
 </div>
 
-<form class="justify-content-center" method="POST" action="/submit ">
+{% if check == True %}
+<form class="justify-content-center" method="POST" action="/index">
     <!-- {{ form.csrf_token }} -->
     <div class="input-group">
         {{ form.name.label(class_="sr-only") }} {{ form.name(class_="form-control form-control",
@@ -29,21 +30,27 @@
     </div>
 </form>
 
+
 <div class="list-group mt-4">
-    {% for post in posts %}
+    {% for service in resultServices %}
 
     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mt-2">
         <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{{ post['activityDescriptionIt'] }} </h5>
+          <h5 class="mb-1">{{ service['activityDescriptionIt'] }} </h5>
           <small class="text-muted">3 days ago</small>
         </div>
-        <p class="mb-1">{{ post['citiyIt'] }} - {{ post['structureDescriptionIt'] }}, {{ post['structureDescriptionIt']}} - {{ post['waitingDays'] }} giorni</p>
-        <small class="text-muted">{{ "Le prenotazioni sono accettate con priorità" if post['priorityList'] else "Le prenotazioni NON sono accettate con priorità" }}</small>
+        <p class="mb-1">{{ service['citiyIt'] }} - {{ service['structureDescriptionIt'] }}, {{ service['structureDescriptionIt']}} - {{ service['waitingDays'] }} giorni</p>
+        <small class="text-muted">{{ "Le prenotazioni sono accettate con priorità" if service['priorityList'] else "Le prenotazioni NON sono accettate con priorità" }}</small>
             <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{ post['waitingDaysPer'] }}%" aria-valuenow= {{ post[
-                        'waitingDays'] }} aria-valuemin="0" aria-valuemax="100">{{ post['waitingDays'] }} giorni</div>
+                    <div class="progress-bar" role="progressbar" style="width: {{ service['waitingDaysPer'] }}%" aria-valuenow= {{ service[
+                        'waitingDays'] }} aria-valuemin="0" aria-valuemax="100">{{ service['waitingDays'] }} giorni</div>
             </div>
       </a>  
 {% endfor %} 
+{% else %} 
+    <div class="alert alert-danger" role="alert">
+      I dati non sono disponibili! Errore nel webservice che contiene i dati.
+    </div>
+{% endif %} 
 </div>
 {% endblock %}
