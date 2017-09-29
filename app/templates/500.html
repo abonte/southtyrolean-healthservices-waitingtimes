@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="alert alert-danger" role="alert">
+    {{ _('I dati non sono disponibili! Errore nel webservice che contiene i dati.') }}
+ 
+    <h1>{{ _('Errore') }}</h1>
+    <p><a href="{{ url_for('index') }}">{{ _('Ritorna alla pagina principale') }}</a>
+  </div>
+{% endblock %}
