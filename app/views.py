@@ -10,7 +10,7 @@ import json
 @app.route('/index', methods=('GET', 'POST'))
 def index():
     form = SearchForm()
-    r = requests.get('http://daten.buergernetz.bz.it/services/WaitLists_Data/jsorereern')
+    r = requests.get('http://daten.buergernetz.bz.it/services/WaitLists_Data/json')
     if r.status_code != 200:
         return render_template("index.html",
                             title = 'Home',
