@@ -1,13 +1,39 @@
-from flask import render_template
-from app import app
+from flask import render_template, request, abort, g, Blueprint
+from app import app, babel
 import requests
 import demjson
 from .forms import SearchForm
+from config import SUPPORTED_LANGUAGES, BABEL_DEFAULT_LOCALE    
 import json
 
+bp = Blueprint('frontend', __name__, url_prefix='/<lang_code>')
+
+@babel.localeselector
+def get_locale():
+    #return request.accept_languages.best_match(SUPPORTED_LANGUAGES.keys())
+    return g.get('lang_code', app.config['BABEL_DEFAULT_LOCALE'])
+
+@app.url_defaults
+def add_language_code(endpoint, values):
+    if 'lang_code' in values or not g.lang_code:
+        return
+    if app.url_map.is_endpoint_expecting(endpoint, 'lang_code'):
+        values['lang_code'] = g.lang_code
+
+@app.url_value_preprocessor
+def pull_lang_code(endpoint, values):
+    g.lang_code = values.pop('lang_code', None)
+
+@app.before_request
+def ensure_lang_support():
+    lang_code = g.get('lang_code', None)
+    if lang_code and lang_code not in app.config['SUPPORTED_LANGUAGES'].keys():
+        return abort(404)
 
 @app.route('/', methods=('GET', 'POST'))
 @app.route('/index', methods=('GET', 'POST'))
+@app.route('/<lang_code>', methods=('GET', 'POST'))
+@app.route('/<lang_code>/index', methods=('GET', 'POST'))
 def index():
     form = SearchForm()
     r = requests.get('http://daten.buergernetz.bz.it/services/WaitLists_Data/json')
@@ -52,8 +78,19 @@ def index():
                             resultServices=resultServices,
                             services=services,
                             check = True,
+                            locale = g.lang_code,
                             form = form)
 
-@app.errorhandler(404)
+''' @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    app.logger.error('Server Error: %s', (error))
+    return render_template('500.html'), 500
+
+@app.errorhandler(Exception)
+def unhandled_exception(error):
+    app.logger.error('Unhandled Exception: %s', (error))
+    return render_template('500.html'), 500  '''
