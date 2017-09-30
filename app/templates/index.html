@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
+
 <div class="jumbotron">
-    <h1>Tempi di prenotazione delle prestazioni sanitarie </h1>
-    <p>L'elenco fornisce il tempo medio di attesa aggiornato per prenotazioni delle prestazioni sanitarie. </p>
-    <p>I dati sono ricavati da <a href="http://dati.retecivica.bz.it/it/dataset/southtyrolean-healthservices-waitingtimes"> Open Data Alto Adige</a>.   </p>
+    <small><a href= "{{ url_for('index', lang_code='it') }}">IT</a> <a href= "{{ url_for('index', lang_code='de') }}">DE</a></small>
+    <h1>{{ _('Tempi di prenotazione delle prestazioni sanitarie') }} </h1>
+    <p>{{ _('L\'elenco fornisce il tempo medio di attesa aggiornato per prenotazioni delle prestazioni sanitarie') }}. </p>
+    <p>{{ _('I dati sono ricavati da') }} <a href="http://dati.retecivica.bz.it/it/dataset/southtyrolean-healthservices-waitingtimes"> Suedtirol Open Data Alto Adige</a>.   </p>
     <a href="https://github.com/abonte/southtyrolean-healthservices-waitingtimes">
-        <img src="static/GitHub-Mark-64px.png" alt="GitHub project" height="22" width="22">
+        <img src="{{ url_for('static', filename = 'GitHub-Mark-64px.png') }}" alt="GitHub project" height="22" width="22">
     </a>
 </div>
 
-{% if check == True %}
+{% if check %}
 <form class="justify-content-center" method="POST" action="/index">
     <!-- {{ form.csrf_token }} -->
     <div class="input-group">
         {{ form.name.label(class_="sr-only") }} {{ form.name(class_="form-control form-control",
-        placeholder="Prestazione sanitaria",
+        placeholder=gettext('Prestazione sanitaria'),
         list="services",
         onchange="this.form.submit()")}}
 
@@ -25,7 +27,7 @@
         </datalist> 
 
         <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            <button type="submit" class="btn btn-primary btn-lg">{{ _('Cerca') }}</button>
         </span>
     </div>
 </form>
@@ -36,17 +38,27 @@
 
     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mt-2">
         <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{{ service['activityDescriptionIt'] }} </h5>
-          <small class="text-muted">3 days ago</small>
+                
+          <h5 class="mb-1">{{ service['activityDescriptionDe'] if locale == 'de' else service['activityDescriptionIt'] }} </h5>
+         
+          <!-- <small class="text-muted">3 days ago</small> -->
         </div>
-        <p class="mb-1">{{ service['citiyIt'] }} - {{ service['structureDescriptionIt'] }}, {{ service['structureDescriptionIt']}} - {{ service['waitingDays'] }} giorni</p>
-        <small class="text-muted">{{ "Le prenotazioni sono accettate con priorità" if service['priorityList'] else "Le prenotazioni NON sono accettate con priorità" }}</small>
+        <p class="mb-1">
+            {% if locale == 'de' %}         
+                {{ service['citiyDe'] }} - {{ service['structureDescriptionDe'] }}
+            {% else %}
+                {{ service['citiyIt'] }} - {{ service['structureDescriptionIt'] }}
+            {% endif %} 
+            - {{ service['waitingDays']}} {{ _('giorni') }} 
+        </p>
+        <small class="text-muted">{{ _('Le prenotazioni sono accettate con priorità') if service['priorityList'] else _('Le prenotazioni NON sono accettate con priorità') }}</small>
             <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{ service['waitingDaysPer'] }}%" aria-valuenow= {{ service[
                         'waitingDays'] }} aria-valuemin="0" aria-valuemax="100">{{ service['waitingDays'] }} giorni</div>
             </div>
       </a>  
 {% endfor %} 
+
 {% else %} 
     <div class="alert alert-danger" role="alert">
       I dati non sono disponibili! Errore nel webservice che contiene i dati.
