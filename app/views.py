@@ -57,7 +57,7 @@ def index():
     if form.validate_on_submit():
         # filter the services
         for i in data:
-            if form.name.data.lower() in (i['activityDescriptionIt'].lower(), i['activityDescriptionDe'].lower()) :
+            if form.name.data.lower() in i['activityDescriptionIt'].lower() or form.name.data.lower() in i['activityDescriptionDe'].lower() :
                 resultServices.append(i)         
     else: 
         # all the services      

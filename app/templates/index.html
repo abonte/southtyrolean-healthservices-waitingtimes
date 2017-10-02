@@ -36,7 +36,7 @@
 <div class="list-group mt-4">
     {% for service in resultServices %}
 
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mt-2">
+    <div  class="list-group-item list-group-item-action flex-column align-items-start mt-2">
         <div class="d-flex w-100 justify-content-between">
                 
           <h5 class="mb-1">{{ service['activityDescriptionDe'] if locale == 'de' else service['activityDescriptionIt'] }} </h5>
@@ -49,14 +49,29 @@
             {% else %}
                 {{ service['citiyIt'] }} - {{ service['structureDescriptionIt'] }}
             {% endif %} 
-            - {{ service['waitingDays']}} {{ _('giorni') }} 
+            - {{ service['waitingDays']}} {{ _('giorni') }}
+            {% if service['phone'] %}   
+            <a href="tel:{{ service['phone'] }}">
+                <img src="{{ url_for('static', filename = 'phone.svg') }}" alt="phone" style="width:16px;height:16px;">
+            </a>
+            {% endif%}
+            {% if service['mailDe'] and locale=='de' %}   
+            <a href="tel:{{ service['mailDe'] }}">
+                <img src="{{ url_for('static', filename = 'envelope-closed.svg') }}" alt="envelope" style="width:16px;height:16px;">
+            </a>
+            {% elif service['mailIt']%}
+            <a href="mailto:{{ service['mailIt'] }}">
+                <img src="{{ url_for('static', filename = 'envelope-closed.svg') }}" alt="envelope" style="width:16px;height:16px;">
+            </a>
+            {% endif%}
         </p>
-        <small class="text-muted">{{ _('Le prenotazioni sono accettate con priorità') if service['priorityList'] else _('Le prenotazioni NON sono accettate con priorità') }}</small>
+
+        <small class="text-muted">{{ _('Le prenotazioni sono accettate con priorità') if service['priorityList']=='true' else _('Le prenotazioni NON sono accettate con priorità') }}</small>
             <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{ service['waitingDaysPer'] }}%" aria-valuenow= {{ service[
-                        'waitingDays'] }} aria-valuemin="0" aria-valuemax="100">{{ service['waitingDays'] }} giorni</div>
+                        'waitingDays'] }} aria-valuemin="0" aria-valuemax="100">{{ service['waitingDays'] }} {{_('giorni')}}</div>
             </div>
-      </a>  
+        </div>  
 {% endfor %} 
 
 {% else %} 
