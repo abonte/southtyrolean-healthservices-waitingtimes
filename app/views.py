@@ -57,7 +57,7 @@ def index():
     if form.validate_on_submit():
         # filter the services
         for i in data:
-            if form.name.data.lower() in i['activityDescriptionIt'].lower():
+            if form.name.data.lower() in (i['activityDescriptionIt'].lower(), i['activityDescriptionDe'].lower()) :
                 resultServices.append(i)         
     else: 
         # all the services      
@@ -65,7 +65,10 @@ def index():
 
     services=set([])
     for i in resultServices:
-        services.add(i['activityDescriptionIt']) #list of services for the search form
+        if g.lang_code == 'de':
+            services.add(i['activityDescriptionDe']) #list of services for the search form
+        else:
+            services.add(i['activityDescriptionIt'])
         if i['waitingDays'] is not None:
             i['waitingDaysPer']= round(i['waitingDays']*100/365, 2) #value for the progress bar
         else:
