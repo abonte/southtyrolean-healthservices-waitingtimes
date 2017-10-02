@@ -12,7 +12,7 @@
 </div>
 
 {% if check %}
-<form class="justify-content-center" method="POST" action="/index">
+<form class="justify-content-center" method="POST" action="{{ url_for('index', lang_code=locale) }}">
     <!-- {{ form.csrf_token }} -->
     <div class="input-group">
         {{ form.name.label(class_="sr-only") }} {{ form.name(class_="form-control form-control",
