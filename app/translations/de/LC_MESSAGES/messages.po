@@ -12,12 +12,11 @@ msgstr ""
 "Last-Translator: \n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.1\n"
-"X-Generator: Poedit 2.0.4\n"
 
 #: app/templates/500.html:5
 msgid "I dati non sono disponibili! Errore nel webservice che contiene i dati."
@@ -37,11 +36,11 @@ msgstr "Vermerkzeiten für ärztliche Dienstleistungen"
 
 #: app/templates/index.html:7
 msgid ""
-"L'elenco fornisce il tempo medio di attesa aggiornato per prenotazioni delle "
-"prestazioni sanitarie"
+"L'elenco fornisce il tempo medio di attesa aggiornato per prenotazioni "
+"delle prestazioni sanitarie"
 msgstr ""
-"Die Liste liefert die aktuellen Wartezeiten für die Vormerkung von ärztlichen "
-"Dienstleistungen"
+"Die Liste liefert die aktuellen Wartezeiten für die Vormerkung von "
+"ärztlichen Dienstleistungen"
 
 #: app/templates/index.html:8
 msgid "I dati sono ricavati da"
@@ -66,3 +65,4 @@ msgstr "Vormerkungen sind mit Priorität angenommen"
 #: app/templates/index.html:54
 msgid "Le prenotazioni NON sono accettate con priorità"
 msgstr "Vormerkungen sind nicht mit Priorität angenommen"
+
