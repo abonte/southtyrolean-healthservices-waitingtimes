@@ -1,0 +1,4 @@
+mkdir .log 2> /dev/null
+
+DEBUG=True authbind gunicorn -b 0.0.0.0:8000 app:app --reload --access-logfile .log/access.log --error-logfile .log/general.log --log-file=-
+
