@@ -41,6 +41,26 @@ gunicorn app:app --log-file=-
 
 The application is available on [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
+
+## Linux installation (Ubuntu-based systems)
+
+For those who want set python3 as default environment system and install all libraries for the project:
+```
+cd /Script
+chmod +x ubuntu.sh
+sudo ./ubuntu.sh
+```
+
+## Vagrant support (tested for Ubuntu 16.04 machine)
+
+At this repository [https://github.com/carlonicolo/vagrant-healthservices-waitingtimes.git](https://github.com/carlonicolo/vagrant-healthservices-waitingtimes.git) , is possible to download the Vagrant file and the script used by the Vagrant file in order automatically:
+* download and install OS dependencies;
+* set python3 as default environment;
+* clone the project;
+* open the port 8000;
+* create a running script for the project.
+
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
