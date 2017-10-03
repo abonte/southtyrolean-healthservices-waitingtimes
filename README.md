@@ -42,7 +42,7 @@ gunicorn app:app --log-file=-
 The application is available on [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 
-## Linux installation (Ubuntu-based systems)
+### Linux installation (Ubuntu-based systems)
 
 For those who want set python3 as default environment system and install all libraries for the project:
 ```
@@ -59,6 +59,8 @@ At this repository [https://github.com/carlonicolo/vagrant-healthservices-waitin
 * clone the project;
 * open the port 8000;
 * create a running script for the project.
+
+[More Info](https://github.com/carlonicolo/vagrant-healthservices-waitingtimes)
 
 
 ## License
