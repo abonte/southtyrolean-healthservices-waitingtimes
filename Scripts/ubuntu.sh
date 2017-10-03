@@ -15,4 +15,4 @@ cd ..
 
 #Install requirements
 echo "Install requirements"
-pip3 install -r requirements.txt
+pip3 install -r ../requirements.txt
