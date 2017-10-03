@@ -3,8 +3,8 @@ apt-get update
 apt-get install -y build-essential curl python3-pip python3-dev
 
 #Set python3 as default
-echo "alias python='python3' " >> .bashrc
-source .bashrc
+echo "alias python='python3' " >> ~/.bashrc
+source ~/.bashrc
 
 
 echo "Python version"
