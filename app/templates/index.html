@@ -71,12 +71,12 @@
             {% endif%}
         </p>
         {% if service['infoDe'] and locale=='de' %}
-            Info: {{service['infoDe']  }}
+            Info: {{service['infoDe']  }} -
         {% elif service['infoit']%}
-            Info: {{service['infoit']  }}
+            Info: {{service['infoit']  }} -
         {% endif%}
         {% if service['SurveyDate'] %}
-           - {{ _('Data rilevazione:') }}  {{ service['SurveyDate'] }}
+           {{ _('Data rilevazione:') }}  {{ service['SurveyDate'] }}
         {% endif%}
         <br>
         <small class="text-muted">{{ _('Le prenotazioni sono accettate con priorità') if service['priorityList']=='true' else _('Le prenotazioni NON sono accettate con priorità') }}</small>
