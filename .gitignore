@@ -93,6 +93,5 @@ ENV/
 
 flask/
 .vscode/
-waitingtimes
 
-./idea
+.idea/

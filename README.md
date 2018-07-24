@@ -62,6 +62,16 @@ At this repository [https://github.com/carlonicolo/vagrant-healthservices-waitin
 
 [More Info](https://github.com/carlonicolo/vagrant-healthservices-waitingtimes)
 
+##Translation
+
+```
+pybabel extract -F babel.cfg -o messages.pot app
+pybabel update -i messages.pot -d app/translations
+```
+Modifiy the file *.po in the directory of the language. For example: app/translations/de/LC_MESSAGES/messages.po
+```
+pybabel compile -d app/translations
+```
 
 ## License
 
