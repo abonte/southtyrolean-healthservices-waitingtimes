@@ -3,6 +3,7 @@ from app import app, babel
 import requests
 import demjson
 from .forms import SearchForm
+import datetime
 from config import SUPPORTED_LANGUAGES, BABEL_DEFAULT_LOCALE    
 import json
 
@@ -74,7 +75,8 @@ def index():
         else:
             #if waitingDay is not available
             i['waitingDaysPer']= -1
-            i['waitingDays'] = "Non disponibile"
+            i['waitingDays'] = 0
+        i['SurveyDate']= datetime.datetime.strptime(i['SurveyDate'], '%Y-%m-%dT%H:%M:%S').strftime('%d/%m/%y')
 
     return render_template("index.html",
                             title='Home',

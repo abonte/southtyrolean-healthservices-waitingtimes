@@ -48,8 +48,13 @@
                 {{ service['citiyDe'] }} - {{ service['structureDescriptionDe'] }}
             {% else %}
                 {{ service['citiyIt'] }} - {{ service['structureDescriptionIt'] }}
-            {% endif %} 
-            - {{ service['waitingDays']}} {{ _('giorni') }}
+            {% endif %}
+            -
+            {% if  service['waitingDays']!=-1%}
+                {{ service['waitingDays']}}  {{_('giorni')}}
+            {% else %}
+                {{_('Tempo di prenotazione non disponibile')}}
+            {% endif %}
             {% if service['phone'] %}   
             <a href="tel:{{ service['phone'] }}">
                 <img src="{{ url_for('static', filename = 'phone.svg') }}" alt="phone" style="width:16px;height:16px;">
@@ -59,17 +64,31 @@
             <a href="tel:{{ service['mailDe'] }}">
                 <img src="{{ url_for('static', filename = 'envelope-closed.svg') }}" alt="envelope" style="width:16px;height:16px;">
             </a>
-            {% elif service['mailIt']%}
+            {% elif service['mailit']%}
             <a href="mailto:{{ service['mailIt'] }}">
                 <img src="{{ url_for('static', filename = 'envelope-closed.svg') }}" alt="envelope" style="width:16px;height:16px;">
             </a>
             {% endif%}
         </p>
-
+        {% if service['infoDe'] and locale=='de' %}
+            Info: {{service['infoDe']  }}
+        {% elif service['infoit']%}
+            Info: {{service['infoit']  }}
+        {% endif%}
+        {% if service['SurveyDate'] %}
+            {{ _('Data rilevazione:') }} {{ service['SurveyDate'] }}
+        {% endif%}
+        <br>
         <small class="text-muted">{{ _('Le prenotazioni sono accettate con priorità') if service['priorityList']=='true' else _('Le prenotazioni NON sono accettate con priorità') }}</small>
             <div class="progress">
+                {% if  service['waitingDays']!=-1 %}
                     <div class="progress-bar" role="progressbar" style="width: {{ service['waitingDaysPer'] }}%" aria-valuenow= {{ service[
-                        'waitingDays'] }} aria-valuemin="0" aria-valuemax="100">{{ service['waitingDays'] }} {{_('giorni')}}</div>
+                        'waitingDays'] }} aria-valuemin="0" aria-valuemax="100">
+                        {{ service['waitingDays']}}  {{_('giorni')}}
+                    </div>
+                 {% else %}
+                    {{_('Tempo di prenotazione non disponibile')}}
+                 {% endif %}
             </div>
         </div>  
 {% endfor %} 

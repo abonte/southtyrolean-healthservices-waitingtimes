@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-29 18:39+0200\n"
-"PO-Revision-Date: 2017-09-29 18:52+0200\n"
+"POT-Creation-Date: 2018-07-24 22:49+0200\n"
+"PO-Revision-Date: 2018-07-24 22:05+0200\n"
 "Last-Translator: \n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: app/templates/500.html:5
 msgid "I dati non sono disponibili! Errore nel webservice che contiene i dati."
-msgstr "Die Daten sind nicht verfügbar! Webservice-Fehler, der die Daten enthält"
+msgstr "Die Daten sind nicht verfügbar! Webservice-Fehler, der die Daten enthält."
 
 #: app/templates/500.html:7
 msgid "Errore"
@@ -54,15 +54,23 @@ msgstr "ärztliche Dienstleistungen"
 msgid "Cerca"
 msgstr "Suche"
 
-#: app/templates/index.html:52
+#: app/templates/index.html:54 app/templates/index.html:88
 msgid "giorni"
 msgstr "Tage"
 
-#: app/templates/index.html:54
+#: app/templates/index.html:56 app/templates/index.html:91
+msgid "Tempo di prenotazione non disponibile"
+msgstr "Vormerkzeit nicht verfügbar"
+
+#: app/templates/index.html:80
+msgid "Data rilevazione:"
+msgstr "Datum der Erhebung"
+
+#: app/templates/index.html:83
 msgid "Le prenotazioni sono accettate con priorità"
 msgstr "Vormerkungen sind mit Priorität angenommen"
 
-#: app/templates/index.html:54
+#: app/templates/index.html:83
 msgid "Le prenotazioni NON sono accettate con priorità"
 msgstr "Vormerkungen sind nicht mit Priorität angenommen"
 
