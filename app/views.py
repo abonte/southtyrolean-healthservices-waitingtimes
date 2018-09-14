@@ -1,12 +1,11 @@
 from flask import render_template, request, abort, g, Blueprint
 from app import app, babel
 import requests
-import demjson
 from .forms import SearchForm
 import datetime
 from config import SUPPORTED_LANGUAGES, BABEL_DEFAULT_LOCALE
 import json
-from operator import attrgetter
+import time
 
 bp = Blueprint('frontend', __name__, url_prefix='/<lang_code>')
 
@@ -43,8 +42,10 @@ def ensure_lang_support():
 @app.route('/<lang_code>/index', methods=('GET', 'POST'))
 def index():
     form = SearchForm()
+    now = time.ctime(int(time.time()))
     r = requests.get('http://daten.buergernetz.bz.it/services/WaitLists_Data/json')
-    if r.status_code != 200:
+    print("Time: {0} / Used Cache: {1}".format(now, r.from_cache))
+    if r.status_code != requests.codes.ok:
         return render_template("index.html",
                                title='Home',
                                resultServices="",
@@ -56,8 +57,7 @@ def index():
     # with open('../waitListsDataExample.json') as data_file:
     #   data = json.load(data_file)
 
-    data = demjson.decode(r.text)
-
+    data = r.json()
     # aggiungere gestione errore
 
     resultServices = []
