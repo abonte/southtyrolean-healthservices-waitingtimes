@@ -1,102 +1,102 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="jumbotron">
-    <small><a href= "{{ url_for('index', lang_code='it') }}">IT</a> <a href= "{{ url_for('index', lang_code='de') }}">DE</a></small>
-    <h1>{{ _('Tempi di prenotazione delle prestazioni sanitarie') }} </h1>
-    <p>{{ _('L\'elenco fornisce il tempo medio di attesa aggiornato per prenotazioni delle prestazioni sanitarie') }}. </p>
-    <p>{{ _('I dati sono ricavati da') }} <a href="http://dati.retecivica.bz.it/it/dataset/southtyrolean-healthservices-waitingtimes"> Suedtirol Open Data Alto Adige</a>.   </p>
-    <a href="https://github.com/abonte/southtyrolean-healthservices-waitingtimes">
-        <img src="{{ url_for('static', filename = 'GitHub-Mark-64px.png') }}" alt="GitHub project" height="22" width="22">
-    </a>
-</div>
-
-{% if check %}
-<form class="justify-content-center" method="POST" action="{{ url_for('index', lang_code=locale) }}">
-    <!-- {{ form.csrf_token }} -->
-    <div class="input-group">
-        {{ form.name.label(class_="sr-only") }} {{ form.name(class_="form-control form-control",
-        placeholder=gettext('Prestazione sanitaria'),
-        list="services",
-        onchange="this.form.submit()")}}
-
-        <datalist id="services">
-            {% for service in services %}
-                <option value="{{service}}">
-            {% endfor %}            
-        </datalist> 
-
-        <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary btn-lg">{{ _('Cerca') }}</button>
-        </span>
+    <div class="jumbotron">
+        <small><a href= "{{ url_for('index', lang_code='it') }}">IT</a> <a href= "{{ url_for('index', lang_code='de') }}">DE</a></small>
+        <h1>{{ _('Tempi di prenotazione delle prestazioni sanitarie') }} </h1>
+        <p>{{ _('L\'elenco fornisce il tempo medio di attesa aggiornato per prenotazioni delle prestazioni sanitarie') }}. </p>
+        <p>{{ _('I dati sono ricavati da') }} <a href="http://dati.retecivica.bz.it/it/dataset/southtyrolean-healthservices-waitingtimes"> Suedtirol Open Data Alto Adige</a>.   </p>
+        <a href="https://github.com/abonte/southtyrolean-healthservices-waitingtimes">
+            <img src="{{ url_for('static', filename = 'GitHub-Mark-64px.png') }}" alt="GitHub project" height="22" width="22">
+        </a>
     </div>
-</form>
 
+    {% if check %}
+    <form class="justify-content-center" method="POST" action="{{ url_for('index', lang_code=locale) }}">
+        <!-- {{ form.csrf_token }} -->
+        <div class="input-group">
+            {{ form.name.label(class_="sr-only") }} {{ form.name(class_="form-control form-control",
+            placeholder=gettext('Prestazione sanitaria'),
+            list="services",
+            onchange="this.form.submit()")}}
 
-<div class="list-group mt-4">
-    {% for service in resultServices %}
+            <datalist id="services">
+                {% for service in services %}
+                    <option value="{{service}}">
+                {% endfor %}
+            </datalist>
 
-    <div  class="list-group-item list-group-item-action flex-column align-items-start mt-2">
-        <div class="d-flex w-100 justify-content-between">
-                
-          <h5 class="mb-1">{{ service['activityDescriptionDe'] if locale == 'de' else service['activityDescriptionIt'] }} </h5>
-         
-          <!-- <small class="text-muted">3 days ago</small> -->
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary btn-lg">{{ _('Cerca') }}</button>
+            </span>
         </div>
-        <p class="mb-1">
-            {% if locale == 'de' %}         
-                {{ service['citiyDe'] }} - {{ service['structureDescriptionDe'] }}
-            {% else %}
-                {{ service['citiyIt'] }} - {{ service['structureDescriptionIt'] }}
-            {% endif %}
-            -
-            {% if  service['waitingDays']!=-1%}
-                {{ service['waitingDays']}}  {{_('giorni')}}
-            {% else %}
-                {{_('Tempo di prenotazione non disponibile')}}
-            {% endif %}
-            {% if service['phone'] %}   
-            <a href="tel:{{ service['phone'] }}">
-                <img src="{{ url_for('static', filename = 'phone.svg') }}" alt="phone" style="width:16px;height:16px;">
-            </a>
-            {% endif%}
-            {% if service['mailDe'] and locale=='de' %}   
-            <a href="tel:{{ service['mailDe'] }}">
-                <img src="{{ url_for('static', filename = 'envelope-closed.svg') }}" alt="envelope" style="width:16px;height:16px;">
-            </a>
-            {% elif service['mailit']%}
-            <a href="mailto:{{ service['mailIt'] }}">
-                <img src="{{ url_for('static', filename = 'envelope-closed.svg') }}" alt="envelope" style="width:16px;height:16px;">
-            </a>
-            {% endif%}
-        </p>
-        {% if service['infoDe'] and locale=='de' %}
-            Info: {{service['infoDe']  }} -
-        {% elif service['infoit']%}
-            Info: {{service['infoit']  }} -
-        {% endif%}
-        {% if service['SurveyDate'] %}
-           {{ _('Data rilevazione:') }}  {{ service['SurveyDate'] }}
-        {% endif%}
-        <br>
-        <small class="text-muted">{{ _('Le prenotazioni sono accettate con priorità') if service['priorityList']=='true' else _('Le prenotazioni NON sono accettate con priorità') }}</small>
-            <div class="progress">
-                {% if  service['waitingDays']!=-1 %}
-                    <div class="progress-bar" role="progressbar" style="width: {{ service['waitingDaysPer'] }}%" aria-valuenow= {{ service[
-                        'waitingDays'] }} aria-valuemin="0" aria-valuemax="100">
-                        {{ service['waitingDays']}}  {{_('giorni')}}
-                    </div>
-                 {% else %}
-                    {{_('Tempo di prenotazione non disponibile')}}
-                 {% endif %}
-            </div>
-        </div>  
-{% endfor %} 
+    </form>
 
-{% else %} 
-    <div class="alert alert-danger" role="alert">
-      I dati non sono disponibili! Errore nel webservice che contiene i dati.
+
+    <div class="list-group mt-4">
+        {% for service in resultServices %}
+
+        <div  class="list-group-item list-group-item-action flex-column align-items-start mt-2">
+            <div class="d-flex w-100 justify-content-between">
+
+              <h5 class="mb-1">{{ service['activityDescriptionDe'] if locale == 'de' else service['activityDescriptionIt'] }} </h5>
+
+              <!-- <small class="text-muted">3 days ago</small> -->
+            </div>
+            <p class="mb-1">
+                {% if locale == 'de' %}
+                    {{ service['cityDe'] }} - {{ service['structureDescriptionDe'] }}
+                {% else %}
+                    {{ service['cityIt'] }} - {{ service['structureDescriptionIt'] }}
+                {% endif %}
+                -
+                {% if  service['waitingDays']!=-1%}
+                    {{ service['waitingDays']}}  {{_('giorni')}}
+                {% else %}
+                    {{_('Tempo di prenotazione non disponibile')}}
+                {% endif %}
+                {% if service['phone'] %}
+                <a href="tel:{{ service['phone'] }}">
+                    <img src="{{ url_for('static', filename = 'phone.svg') }}" alt="phone" style="width:16px;height:16px;">
+                </a>
+                {% endif%}
+                {% if service['mailDe'] and locale=='de' %}
+                <a href="tel:{{ service['mailDe'] }}">
+                    <img src="{{ url_for('static', filename = 'envelope-closed.svg') }}" alt="envelope" style="width:16px;height:16px;">
+                </a>
+                {% elif service['mailIt']%}
+                <a href="mailto:{{ service['mailIt'] }}">
+                    <img src="{{ url_for('static', filename = 'envelope-closed.svg') }}" alt="envelope" style="width:16px;height:16px;">
+                </a>
+                {% endif%}
+            </p>
+            {% if service['infoDe'] and locale=='de' %}
+                Info: {{service['infoDe']  }} -
+            {% elif service['infoit']%}
+                Info: {{service['infoit']  }} -
+            {% endif%}
+            {% if service['SurveyDate'] %}
+               {{ _('Data rilevazione:') }}  {{ service['SurveyDate'] }}
+            {% endif%}
+            <br>
+            <small class="text-muted">{{ _('Le prenotazioni sono accettate con priorità') if service['priorityList']=='true' else _('Le prenotazioni NON sono accettate con priorità') }}</small>
+                <div class="progress">
+                    {% if  service['waitingDays']!=-1 %}
+                        <div class="progress-bar" role="progressbar" style="width: {{ service['waitingDaysPer'] }}%" aria-valuenow= {{ service[
+                            'waitingDays'] }} aria-valuemin="0" aria-valuemax="100">
+                            {{ service['waitingDays']}}  {{_('giorni')}}
+                        </div>
+                     {% else %}
+                        {{_('Tempo di prenotazione non disponibile')}}
+                     {% endif %}
+                </div>
+            </div>
+    {% endfor %}
+
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+          I dati non sono disponibili! Errore nel webservice che contiene i dati.
+        </div>
+    {% endif %}
     </div>
-{% endif %} 
-</div>
 {% endblock %}
