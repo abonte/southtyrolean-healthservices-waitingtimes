@@ -9,6 +9,12 @@ import time
 
 bp = Blueprint('frontend', __name__, url_prefix='/<lang_code>')
 
+GERMAN_KEYS = ['SurveyDescriptionDe', 'activityDescriptionDe', 'structureDescriptionDe', 'addressNameDe', 'streetDe',
+               'cityDe', 'contactNameDe', 'mailDe', 'openinghoursDe', 'infoDe']
+
+ITALIAN_KEYS = ['SurveyDescriptionIt', 'activityDescriptionIt', 'structureDescriptionIt', 'addressNameIt', 'streetIt',
+                'cityIt', 'contactNameIt', 'mailIt', 'openinghoursIt', 'infoit']
+
 
 @babel.localeselector
 def get_locale():
@@ -35,6 +41,9 @@ def ensure_lang_support():
     if lang_code and lang_code not in app.config['SUPPORTED_LANGUAGES'].keys():
         return abort(404)
 
+#@app.route('/', methods=('GET', 'POST'))
+def Test():
+    return render_template("test.html")
 
 @app.route('/', methods=('GET', 'POST'))
 @app.route('/index', methods=('GET', 'POST'))
@@ -62,19 +71,18 @@ def index():
 
     resultServices = []
     services = set([])
-    for i in data:
-            services = _addToListServices(services, i)
-            if form.validate_on_submit() and _isServiceDescription(form.name.data, i):
-                resultServices.append(i)
+    for elem in data:
+        temp = elem['activityDescriptionDe'] if g.lang_code == 'de' else elem['activityDescriptionIt']
+        services.add(temp)
+        if form.validate_on_submit():
+            if _isServiceDescription(form.name.data, elem):
+                resultServices.append(elem)
+        else:
+            resultServices.append(elem)
 
-    resultServices = data if not form.validate_on_submit() else resultServices
 
-    max_ = _findMaxWaiting(resultServices)
+    resultServices = _format(resultServices)
 
-    for i in resultServices:
-        i['waitingDaysPer'] = _valueProgressBar(i, max_)
-        i['waitingDays'] = i['waitingDays'] if i['waitingDaysPer'] != -1 else 0
-        i['SurveyDate'] = datetime.datetime.strptime(i['SurveyDate'], '%Y-%m-%dT%H:%M:%S').strftime('%d/%m/%y')
 
     return render_template("index.html",
                            title='Home',
@@ -84,13 +92,29 @@ def index():
                            locale=g.lang_code,
                            form=form)
 
+def _format(resultServices):
+    max_ = _findMaxWaiting(resultServices)
+    formatServices = []
+    for elem in resultServices:
+        elem['waitingDaysPer'] = _valueProgressBar(elem, max_)
+        elem = _keysForLang(elem)
+        elem['waitingDays'] = elem['waitingDays'] if elem['waitingDaysPer'] != -1 else 0
+        elem['SurveyDate'] = datetime.datetime.strptime(elem['SurveyDate'], '%Y-%m-%dT%H:%M:%S').strftime('%d/%m/%y')
+        formatServices.append(elem)
+    return formatServices
 
-def _addToListServices(services, i):
-    if g.lang_code == 'de':
-        services.add(i['activityDescriptionDe'])  # list of services for the search form
-    else:
-        services.add(i['activityDescriptionIt'])
-    return services
+
+def _keysForLang(service):
+    serviceLang = {}
+    lang = ["It", "it"]
+    notLang = ["De"]
+    lang, notLang = (notLang, lang) if g.lang_code == 'de' else (lang, notLang)
+    for key, value in service.items():
+        if key[-2:] in lang:
+            serviceLang[key[0:-2]] = value
+        elif key[-2:] not in notLang:
+            serviceLang[key] = value
+    return serviceLang
 
 
 def _isServiceDescription(text, service):
@@ -124,3 +148,6 @@ def internal_server_error(error):
 def unhandled_exception(error):
     app.logger.error('Unhandled Exception: %s', (error))
     return render_template('500.html'), 500
+
+
+

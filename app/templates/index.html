@@ -11,6 +11,7 @@
         </a>
     </div>
 
+
     {% if check %}
     <form class="justify-content-center" method="POST" action="{{ url_for('index', lang_code=locale) }}">
         <!-- {{ form.csrf_token }} -->
@@ -36,19 +37,15 @@
     <div class="list-group mt-4">
         {% for service in resultServices %}
 
-        <div  class="list-group-item list-group-item-action flex-column align-items-start mt-2">
+        <div class="list-group-item list-group-item-action flex-column align-items-start mt-2" data-toggle="modal" data-target="#exampleModalCenter">
             <div class="d-flex w-100 justify-content-between">
 
-              <h5 class="mb-1">{{ service['activityDescriptionDe'] if locale == 'de' else service['activityDescriptionIt'] }} </h5>
+              <h5 class="mb-1">{{ service['activityDescription'] }} </h5>
 
               <!-- <small class="text-muted">3 days ago</small> -->
             </div>
             <p class="mb-1">
-                {% if locale == 'de' %}
-                    {{ service['cityDe'] }} - {{ service['structureDescriptionDe'] }}
-                {% else %}
-                    {{ service['cityIt'] }} - {{ service['structureDescriptionIt'] }}
-                {% endif %}
+                {{ service['city'] }} - {{ service['structureDescription'] }}
                 -
                 {% if  service['waitingDays']!=-1%}
                     {{ service['waitingDays']}}  {{_('giorni')}}
@@ -60,20 +57,14 @@
                     <img src="{{ url_for('static', filename = 'phone.svg') }}" alt="phone" style="width:16px;height:16px;">
                 </a>
                 {% endif%}
-                {% if service['mailDe'] and locale=='de' %}
-                <a href="tel:{{ service['mailDe'] }}">
-                    <img src="{{ url_for('static', filename = 'envelope-closed.svg') }}" alt="envelope" style="width:16px;height:16px;">
-                </a>
-                {% elif service['mailIt']%}
-                <a href="mailto:{{ service['mailIt'] }}">
+                {% if service['mail']  %}
+                <a href="mailto:{{ service['mail'] }}">
                     <img src="{{ url_for('static', filename = 'envelope-closed.svg') }}" alt="envelope" style="width:16px;height:16px;">
                 </a>
                 {% endif%}
             </p>
-            {% if service['infoDe'] and locale=='de' %}
-                Info: {{service['infoDe']  }} -
-            {% elif service['infoit']%}
-                Info: {{service['infoit']  }} -
+            {% if service['info'] %}
+                Info: {{service['info']  }} -
             {% endif%}
             {% if service['SurveyDate'] %}
                {{ _('Data rilevazione:') }}  {{ service['SurveyDate'] }}
@@ -90,7 +81,66 @@
                         {{_('Tempo di prenotazione non disponibile')}}
                      {% endif %}
                 </div>
+        </div>
+
+
+                    <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">{{ service['activityDescription'] }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <p class="text-left">
+                      <p class="h3">{{ _('Struttura') }}</p>
+                      {{ service['structureDescription'] }}
+                      <br/>
+                      {{ service['addressName'] }}
+                      <br/>
+                      {{ service['street'] }}
+                      <br/>
+                      {{ service['zip'] ~ ' ' ~ service['city'] }}
+                      <br/>
+                      <br/>
+                      {{ _('Orario di apertura') }} : {{ service['openinghours'] }}
+                      <br/>
+                      <br/>
+                      <p class="h3">{{ _('Punto di contatto per le prenotazioni') }}</p>
+                      <br/>
+                      {{ service['contactName'] }}
+                      <br/>
+                      {{ _('Telefono') }}: <a href="tel:{{ service['phone'] }}"> {{ service['phone'] }} </a> {{ _('Fax') ~ ': ' ~ service['fax'] }}
+                      <br/>
+                      <a href="mailto:{{ service['mail'] }}">{{ service['mail'] }}</a>
+
+                      <br/>
+                      <br/>
+                      <p class="h5">{{ _('Info') }}</p>
+                      {% if service['info'] %}
+                          {{service['info']  }} <br/>
+                      {% endif%}
+                      {{ _('Le prenotazioni sono accettate con priorità') if service['priorityList']=='true' else _('Le prenotazioni NON sono accettate con priorità') }}
+                      <br/>
+                      <br>
+                      {{ service['SurveyDescription'] }}
+                      <br>
+                      {% if service['SurveyDate'] %}
+                          {{ _('Data rilevazione:') }}  {{ service['SurveyDate'] }}
+                      {% endif%}
+
+                  </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">{{ _('Chiudi') }}</button>
+              </div>
             </div>
+          </div>
+        </div>
+
     {% endfor %}
 
     {% else %}
@@ -99,4 +149,5 @@
         </div>
     {% endif %}
     </div>
+
 {% endblock %}
