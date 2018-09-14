@@ -62,7 +62,7 @@ At this repository [https://github.com/carlonicolo/vagrant-healthservices-waitin
 
 [More Info](https://github.com/carlonicolo/vagrant-healthservices-waitingtimes)
 
-##Translation
+## Translation
 
 ```
 pybabel extract -F babel.cfg -o messages.pot app
