@@ -78,6 +78,6 @@ pybabel compile -d app/translations
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 
-Open Iconic — [www.useiconic.com/open](www.useiconic.com/open)
+Open Iconic — [www.useiconic.com/open](https://useiconic.com/open)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)

@@ -148,6 +148,3 @@ def internal_server_error(error):
 def unhandled_exception(error):
     app.logger.error('Unhandled Exception: %s', (error))
     return render_template('500.html'), 500
-
-
-
