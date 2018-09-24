@@ -2,14 +2,53 @@
 {% block content %}
 
     <div class="jumbotron">
-        <small><a href= "{{ url_for('index', lang_code='it') }}">IT</a> <a href= "{{ url_for('index', lang_code='de') }}">DE</a></small>
-        <h1>{{ _('Tempi di prenotazione delle prestazioni sanitarie') }} </h1>
+        <small style="display: block">
+            <a href= "{{ url_for('index', lang_code='it') }}">IT</a> <a href= "{{ url_for('index', lang_code='de') }}">DE</a>
+        </small>
+        <h1 style="display: inline">{{ _('Tempi di prenotazione delle prestazioni sanitarie') }} </h1> <span class="badge badge-info">BETA</span>
+
         <p>{{ _('L\'elenco fornisce il tempo medio di attesa aggiornato per prenotazioni delle prestazioni sanitarie') }}. </p>
-        <p>{{ _('I dati sono ricavati da') }} <a href="http://dati.retecivica.bz.it/it/dataset/southtyrolean-healthservices-waitingtimes"> Suedtirol Open Data Alto Adige</a>.   </p>
-        <a href="https://github.com/abonte/southtyrolean-healthservices-waitingtimes">
+
+        <a tabindex="0" role="button" class="btn btn-info btn-sm popovermenu"
+           data-toggle="popover"
+           data-trigger="focus"
+           data-placement="bottom"
+           data-html="true"
+           data-content="{{ _('I dati sono ricavati da') }}
+                        <a href='http://dati.retecivica.bz.it/it/dataset/southtyrolean-healthservices-waitingtimes'> Suedtirol Open Data Alto Adige</a>
+                        <br>
+                        {% if locale == 'it' %}
+                        <a href='http://www.sabes.it/it/tempi-di-prenotazione.asp'>
+                            {% else %}
+                        <a href='http://www.sabes.it/de/vormerkzeiten.asp'>
+                            {% endif  %}
+                        {{ _('Maggiori informazioni') }} </a>
+            ">
+            {{ _('Informazioni') }}
+        </a>
+        <a tabindex="0" role="button" class="btn btn-warning btn-sm popovermenu"
+           data-toggle="popover"
+           data-trigger="focus"
+           data-placement="bottom"
+           data-html="true"
+           data-content="{{ _('Le prestazioni urgenti vengono immediatamente garantite.
+               I tempi di attesa qui pubblicati si riferiscono a quanto emerso in un dato momento dello specifico giorno della rilevazione.
+               Essi possono quindi variare, tendendo verso l\'alto o verso il basso.') }}
+                <br>
+                  {% if locale == 'it' %}
+                     <a href='http://www.sabes.it/it/tempi-di-prenotazione.asp' target='_blank'>
+                  {% else %}
+                      <a href='http://www.sabes.it/de/vormerkzeiten.asp' target='_blank'>
+                  {% endif  %}
+               {{ _('Maggiori informazioni') }} </a>
+            ">
+            {{ _('Avvertenze') }}
+        </a>
+
+
+        <a href="https://github.com/abonte/southtyrolean-healthservices-waitingtimes" target="_blank">
             <img src="{{ url_for('static', filename = 'GitHub-Mark-64px.png') }}" alt="GitHub project" height="22" width="22">
         </a>
-        <span class="badge badge-info">BETA</span>
     </div>
 
 

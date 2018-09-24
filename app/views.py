@@ -9,11 +9,11 @@ import time
 
 bp = Blueprint('frontend', __name__, url_prefix='/<lang_code>')
 
-GERMAN_KEYS = ['SurveyDescriptionDe', 'activityDescriptionDe', 'structureDescriptionDe', 'addressNameDe', 'streetDe',
-               'cityDe', 'contactNameDe', 'mailDe', 'openinghoursDe', 'infoDe']
+#GERMAN_KEYS = ['SurveyDescriptionDe', 'activityDescriptionDe', 'structureDescriptionDe', 'addressNameDe', 'streetDe',
+#               'cityDe', 'contactNameDe', 'mailDe', 'openinghoursDe', 'infoDe']
 
-ITALIAN_KEYS = ['SurveyDescriptionIt', 'activityDescriptionIt', 'structureDescriptionIt', 'addressNameIt', 'streetIt',
-                'cityIt', 'contactNameIt', 'mailIt', 'openinghoursIt', 'infoit']
+#ITALIAN_KEYS = ['SurveyDescriptionIt', 'activityDescriptionIt', 'structureDescriptionIt', 'addressNameIt', 'streetIt',
+#                'cityIt', 'contactNameIt', 'mailIt', 'openinghoursIt', 'infoit']
 
 
 @babel.localeselector
@@ -52,7 +52,7 @@ def Test():
 def index():
     form = SearchForm()
     now = time.ctime(int(time.time()))
-    r = requests.get('http://daten.buergernetz.bz.it/services/WaitLists_Data/json')
+    r = requests.get('http://daten.buergernetz.bz.it/services/WaitLists_Data/json', timeout=5)
     print("Time: {0} / Used Cache: {1}".format(now, r.from_cache))
     if r.status_code != requests.codes.ok:
         return render_template("index.html",
@@ -140,11 +140,19 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def internal_server_error(error):
+    print('e1')
     app.logger.error('Server Error: %s', (error))
     return render_template('500.html'), 500
 
 
+@app.errorhandler(requests.exceptions.Timeout)
+def unhandled_exception(error):
+    app.logger.error('Unhandled Exception: %s', (error))
+    return render_template('500-webservice.html'), 500
+
+
 @app.errorhandler(Exception)
 def unhandled_exception(error):
+    print('e2')
     app.logger.error('Unhandled Exception: %s', (error))
     return render_template('500.html'), 500
