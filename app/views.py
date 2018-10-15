@@ -114,7 +114,7 @@ def _format(resultServices):
     for elem in resultServices:
         elem['waitingDaysPer'] = _valueProgressBar(elem, max_)
         elem = _keysForLang(elem)
-        elem['waitingDays'] = elem['waitingDays'] if elem['waitingDaysPer'] != -1 else 0
+        elem['waitingDays'] = elem['waitingDays'] if elem['waitingDays'] != -1 else None
         elem['SurveyDate'] = datetime.datetime.strptime(elem['SurveyDate'], '%Y-%m-%dT%H:%M:%S').strftime('%d/%m/%y')
         formatServices.append(elem)
     return formatServices

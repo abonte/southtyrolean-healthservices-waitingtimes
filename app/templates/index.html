@@ -113,7 +113,7 @@
             <br>
             <small class="text-muted">{{ _('Le prenotazioni sono accettate con priorità') if service['priorityList']=='true' else _('Le prenotazioni NON sono accettate con priorità') }}</small>
                 <div class="progress">
-                    {% if  service['waitingDays']!=-1 %}
+                    {% if  service['waitingDays']!= None %}
                         <div class="progress-bar" role="progressbar" style="width: {{ service['waitingDaysPer'] }}%" aria-valuenow= {{ service[
                             'waitingDays'] }} aria-valuemin="0" aria-valuemax="100">
                             {{ service['waitingDays']}}  {{_('giorni')}}
