@@ -16,13 +16,14 @@
            data-html="true"
            data-content="{{ _('I dati sono ricavati da') }}
                         <a href='http://dati.retecivica.bz.it/it/dataset/southtyrolean-healthservices-waitingtimes'> Suedtirol Open Data Alto Adige</a>
+                        <img src='{{ url_for('static', filename = 'external-link.svg') }}' alt='external link'>
                         <br>
                         {% if locale == 'it' %}
                         <a href='http://www.sabes.it/it/tempi-di-prenotazione.asp'>
                             {% else %}
                         <a href='http://www.sabes.it/de/vormerkzeiten.asp'>
                             {% endif  %}
-                        {{ _('Maggiori informazioni') }} </a>
+                        {{ _('Maggiori informazioni') }} <img src='{{ url_for('static', filename = 'external-link.svg') }}' alt='external link'> </a>
             ">
             {{ _('Informazioni') }}
         </a>
@@ -40,7 +41,7 @@
                   {% else %}
                       <a href='http://www.sabes.it/de/vormerkzeiten.asp' target='_blank'>
                   {% endif  %}
-               {{ _('Maggiori informazioni') }} </a>
+               {{ _('Maggiori informazioni') }} <img src='{{ url_for('static', filename = 'external-link.svg') }}' alt='external link'> </a>
             ">
             {{ _('Avvertenze') }}
         </a>
@@ -80,7 +81,7 @@
         <div class="list-group-item list-group-item-action flex-column align-items-start mt-2" data-toggle="modal" data-target="#Modal-{{"".join(service['structureDescription'].split()) }}-{{ "".join(service['activityDescription'].split()) }}">
             <div class="d-flex w-100 justify-content-between">
 
-              <h5 class="mb-1">{{ service['activityDescription'] }} </h5>
+              <h5 class="mb-1" style="display: inline" >{{ service['activityDescription'] }} <img src="{{ url_for('static', filename = 'chevron-right.svg') }}" alt="chevron right" style="margin-left: 5px;width:10px;height:10px;"></h5>
 
               <!-- <small class="text-muted">3 days ago</small> -->
             </div>
@@ -158,6 +159,15 @@
                       {{ _('Telefono') }}: <a href="tel:{{ service['phone'] }}"> {{ service['phone'] }} </a> {{ _('Fax') ~ ': ' ~ service['fax'] if service['fax'] else ' ' }}
                       <br/>
                       <a href="mailto:{{ service['mail'] }}">{{ service['mail'] if service['mail'] else ' '}}</a>
+                      <br/>
+                      {% if locale == 'it' %}
+                          <a role="button" class="btn btn-outline-primary" href="https://prenotazioneonline.asdaa.it/cupp/Home?request_locale=it" target="_blank">
+                      {% else %}
+                          <a role="button" class="btn btn-outline-primary" href="https://prenotazioneonline.asdaa.it/cupp/Home?request_locale=de" target="_blank">
+                      {% endif %}
+                        {{ _('Prenota online') }} <img src='{{ url_for('static', filename = 'external-link.svg') }}' alt='external link'>
+
+                      </a>
 
                       <br/>
                       <br/>

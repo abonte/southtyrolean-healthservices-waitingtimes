@@ -3,11 +3,13 @@ from app import app, babel
 import requests
 from .forms import SearchForm
 import datetime
-from config import SUPPORTED_LANGUAGES, BABEL_DEFAULT_LOCALE
 import json
 import time
+import keen
 
 bp = Blueprint('frontend', __name__, url_prefix='/<lang_code>')
+keen.project_id = app.config['KEEN_PROJECT_ID']
+keen.write_key = app.config['KEEN_WRITE_KEY']
 
 #GERMAN_KEYS = ['SurveyDescriptionDe', 'activityDescriptionDe', 'structureDescriptionDe', 'addressNameDe', 'streetDe',
 #               'cityDe', 'contactNameDe', 'mailDe', 'openinghoursDe', 'infoDe']
@@ -62,12 +64,26 @@ def index():
                                check=False,
                                form=form)
 
+
     # to use a local copy of the data
     # with open('../waitListsDataExample.json') as data_file:
     #   data = json.load(data_file)
 
     data = r.json()
     # aggiungere gestione errore
+
+    if keen.project_id is not None:
+        print('keen')
+        if form.validate_on_submit():
+            print('search')
+            keen.add_event("search-text", {
+                "text": form.name.data,
+            })
+        else:
+            print('view')
+            keen.add_event("view", {
+                "text": None,
+            })
 
     resultServices = []
     services = set([])
@@ -81,8 +97,7 @@ def index():
             resultServices.append(elem)
 
 
-    resultServices = _format(resultServices)
-
+    resultServices = _format(resultServices) if len(resultServices)!=0 else []
 
     return render_template("index.html",
                            title='Home',
@@ -91,6 +106,7 @@ def index():
                            check=True,
                            locale=g.lang_code,
                            form=form)
+
 
 def _format(resultServices):
     max_ = _findMaxWaiting(resultServices)
