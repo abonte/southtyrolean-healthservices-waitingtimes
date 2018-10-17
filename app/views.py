@@ -10,6 +10,9 @@ import keen
 bp = Blueprint('frontend', __name__, url_prefix='/<lang_code>')
 keen.project_id = app.config['KEEN_PROJECT_ID']
 keen.write_key = app.config['KEEN_WRITE_KEY']
+with open('structures-with-geoloc.json') as json_data:
+    geocodification = json.load(json_data)
+    print('geo')
 
 #GERMAN_KEYS = ['SurveyDescriptionDe', 'activityDescriptionDe', 'structureDescriptionDe', 'addressNameDe', 'streetDe',
 #               'cityDe', 'contactNameDe', 'mailDe', 'openinghoursDe', 'infoDe']
@@ -96,7 +99,7 @@ def index():
         else:
             resultServices.append(elem)
 
-
+    resultServices = _add_geolocalization(resultServices)
     resultServices = _format(resultServices) if len(resultServices)!=0 else []
 
     return render_template("index.html",
@@ -118,6 +121,14 @@ def _format(resultServices):
         elem['SurveyDate'] = datetime.datetime.strptime(elem['SurveyDate'], '%Y-%m-%dT%H:%M:%S').strftime('%d/%m/%y')
         formatServices.append(elem)
     return formatServices
+
+
+def _add_geolocalization(services):
+    for e in services:
+        for g in geocodification:
+            if e['structureDescriptionIt'] == g['structureDescriptionIt']:
+                e['coordinates'] = g['coordinates']
+    return services
 
 
 def _keysForLang(service):

@@ -1,0 +1,572 @@
+[
+    {
+        "structureDescriptionDe": "Krankenhaus Bozen - Gefäßchirurgie",
+        "coordinates": {
+            "long": 11.3097628922548,
+            "lat": 46.4984608
+        },
+        "structureDescriptionIt": "Ospedale di Bolzano - Chirurgia Vascolare",
+        "streetDe": "L. Böhler-Str. 5",
+        "streetIt": "Via L. Böhler 5",
+        "zip": "39100",
+        "addressNameDe": "Torax und Gefässchirurgische",
+        "addressNameIt": "Chirurgia Vascolare e Toracica",
+        "cityDe": "Bozen",
+        "cityIt": "Bolzano"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz Leifers",
+        "coordinates": {
+            "long": 11.33813,
+            "lat": 46.42484
+        },
+        "structureDescriptionIt": "Sede di distretto Laives",
+        "streetDe": "Innerhoferstr. 15",
+        "streetIt": "Via Innerhofer 15",
+        "zip": "39055",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Leifers",
+        "cityIt": "Laives"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz Ulten",
+        "coordinates": {
+            "long": 11.0059113,
+            "lat": 46.550303
+        },
+        "structureDescriptionIt": "Distretto Val d’Ultimo",
+        "streetDe": null,
+        "streetIt": null,
+        "zip": null,
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "St. Walburg - Ulten",
+        "cityIt": "Santa Valburga - Ultimo"
+    },
+    {
+        "structureDescriptionDe": "Sprengel Klausen - Umgebung",
+        "coordinates": {
+            "long": 10.8325436,
+            "lat": 44.5069046
+        },
+        "structureDescriptionIt": "Distretto Chiusa",
+        "streetDe": "Seebegg 17",
+        "streetIt": "Seebegg 17",
+        "zip": "39043",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Klausen",
+        "cityIt": "Chiusa"
+    },
+    {
+        "structureDescriptionDe": "Sprengel Sand in Taufers",
+        "coordinates": {
+            "long": 11.9557886,
+            "lat": 46.9177334
+        },
+        "structureDescriptionIt": "Distretto Campo Tures",
+        "streetDe": "Hugo-von-Taufers-str. 19",
+        "streetIt": "Via Hugo von Taufers 19",
+        "zip": "39032",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Sand in Taufers",
+        "cityIt": "Campo Tures"
+    },
+    {
+        "structureDescriptionDe": "Pneumologischer Dienst Bruneck",
+        "coordinates": {
+            "long": 11.9382346,
+            "lat": 46.8002815
+        },
+        "structureDescriptionIt": "Servizio pneumologico Brunico",
+        "streetDe": "Andreas Hofer Str. 25",
+        "streetIt": "Via Andreas Hofer 25",
+        "zip": "39031",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Bruneck",
+        "cityIt": "Brunico"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Bruneck Reha",
+        "coordinates": {
+            "long": 11.9367123,
+            "lat": 46.7999108
+        },
+        "structureDescriptionIt": "Ospedale di Brunico riabilitazione",
+        "streetDe": "Spitalstr. 11",
+        "streetIt": "Via Ospedale 11",
+        "zip": "39031",
+        "addressNameDe": "Reha-Ambulanz",
+        "addressNameIt": "Ambulatorio riabilitazione",
+        "cityDe": "Bruneck",
+        "cityIt": "Brunico"
+    },
+    {
+        "structureDescriptionDe": "Bonvicini Klinik",
+        "coordinates": {
+            "long": 11.33432835,
+            "lat": 46.50635265
+        },
+        "structureDescriptionIt": "Clinica Bonvicini",
+        "streetDe": "M. Pacher-Str. 12",
+        "streetIt": "Via M. Pacher 12",
+        "zip": "39100",
+        "addressNameDe": "Radiologie",
+        "addressNameIt": "Radiologia",
+        "cityDe": "Bozen",
+        "cityIt": "Bolzano"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Bruneck Medizin",
+        "coordinates": {
+            "long": 11.9367123,
+            "lat": 46.7999108
+        },
+        "structureDescriptionIt": "Ospedale di Brunico medicina interna",
+        "streetDe": "Spitalstr. 11",
+        "streetIt": "Via Ospedale 11",
+        "zip": "39031",
+        "addressNameDe": "Medizinische Ambulanz",
+        "addressNameIt": "Ambulatorio medicina interna",
+        "cityDe": "Bruneck",
+        "cityIt": "Brunico"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz St. Ulrich",
+        "coordinates": {
+            "long": 11.6674503,
+            "lat": 46.5751682
+        },
+        "structureDescriptionIt": "Sede di distretto Ortisei ",
+        "streetDe": "J.-B. Purger-Str. 14",
+        "streetIt": "Via J. B. Purger 14",
+        "zip": "39046",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "St. Ulrich",
+        "cityIt": "Ortisei"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Meran",
+        "coordinates": {
+            "long": 11.15164,
+            "lat": 46.67707
+        },
+        "structureDescriptionIt": "Ospedale di Merano",
+        "streetDe": "Rossinistr. 5",
+        "streetIt": "Via Rossini 5",
+        "zip": "39012",
+        "addressNameDe": "Funktionsdiagnostik Kardiologie",
+        "addressNameIt": "Prove Funzionali Cardiologia",
+        "cityDe": "Meran",
+        "cityIt": "Merano"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz Leifers",
+        "coordinates": {
+            "long": 11.33813,
+            "lat": 46.42484
+        },
+        "structureDescriptionIt": "Sede di distretto Laives",
+        "streetDe": "Innerhoferstr. 15",
+        "streetIt": "Via Innerhofer 15",
+        "zip": "39055",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Leifers",
+        "cityIt": "Laives"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Meran",
+        "coordinates": {
+            "long": 11.15164,
+            "lat": 46.67707
+        },
+        "structureDescriptionIt": "Ospedale di Merano",
+        "streetDe": "Rossinistr. 5",
+        "streetIt": "Via Rossini 5",
+        "zip": "39012",
+        "addressNameDe": "Funktionsdiagnostik Kardiologie",
+        "addressNameIt": "Prove Funzionali Cardiologia",
+        "cityDe": "Meran",
+        "cityIt": "Merano"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Brixen",
+        "coordinates": {
+            "long": 11.6489,
+            "lat": 46.7243
+        },
+        "structureDescriptionIt": "Ospedale di Bressanone",
+        "streetDe": "Dantestr. 51",
+        "streetIt": "Via Dante 51",
+        "zip": "39042",
+        "addressNameDe": "Medizin Ambulanz",
+        "addressNameIt": "Amb. di Medicina",
+        "cityDe": "Brixen",
+        "cityIt": "Bressanone"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz Neumarkt",
+        "coordinates": {
+            "long": 11.2728,
+            "lat": 46.3147
+        },
+        "structureDescriptionIt": "Sede di distretto Egna",
+        "streetDe": "F. Bonatti-Platz 1",
+        "streetIt": "P.zza F. Bonatti 1",
+        "zip": "39044",
+        "addressNameDe": "Sprengelsitz Neumarkt",
+        "addressNameIt": "Sede di Distretto Egna",
+        "cityDe": "Neumarkt",
+        "cityIt": "Egna"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Bruneck",
+        "coordinates": {
+            "long": 11.9382346,
+            "lat": 46.8002815
+        },
+        "structureDescriptionIt": "Ospedale di Brunico",
+        "streetDe": "Spitalstr. 11",
+        "streetIt": "Via Ospedale 11",
+        "zip": "39031",
+        "addressNameDe": "Medizinische Ambulanz",
+        "addressNameIt": "Ambulatorio medicina interna",
+        "cityDe": "Bruneck",
+        "cityIt": "Brunico"
+    },
+    {
+        "structureDescriptionDe": "Sprengel Quirein/Gries",
+        "coordinates": {
+            "long": 11.34071,
+            "lat": 46.49867
+        },
+        "structureDescriptionIt": "Distretto S. Quirino/Gries",
+        "streetDe": "Piazza W. A. L. Cadonna 12",
+        "streetIt": "W.-A.-L.-Cadonna-Platz 12",
+        "zip": "39100",
+        "addressNameDe": "Poliambulatorien",
+        "addressNameIt": "Poliambulatori",
+        "cityDe": "Bozen",
+        "cityIt": "Bolzano"
+    },
+    {
+        "structureDescriptionDe": "Sprengel Gadertal",
+        "coordinates": {
+            "long": 11.8945327,
+            "lat": 46.6894158
+        },
+        "structureDescriptionIt": "Distretto Val Badia",
+        "streetDe": "Pikolein-str 48",
+        "streetIt": "Via Pikolein 48",
+        "zip": "39030",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "St. Martin in Thurn",
+        "cityIt": "S. Martino Badia"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz Lana",
+        "coordinates": {
+            "long": 11.1466883,
+            "lat": 46.6155253
+        },
+        "structureDescriptionIt": "Sede di distretto Lana",
+        "streetDe": "A. Hoferstr. 2",
+        "streetIt": "Via A. Hofer 2",
+        "zip": "39011",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Lana",
+        "cityIt": "Lana"
+    },
+    {
+        "structureDescriptionDe": "Diagnosezentrum OMEGA",
+        "coordinates": {
+            "long": 11.3267593,
+            "lat": 46.4793372
+        },
+        "structureDescriptionIt": "Centro diagnostico OMEGA",
+        "streetDe": "Luis_Zuegg Straße 38",
+        "streetIt": "Via Luis Zuegg 38",
+        "zip": "39100",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Bozen",
+        "cityIt": "Bolzano"
+    },
+    {
+        "structureDescriptionDe": "Klinik Martinsbrunn",
+        "coordinates": {
+            "long": 11.1701255675503,
+            "lat": 46.66885745
+        },
+        "structureDescriptionIt": "Clinica Martinsbrunn",
+        "streetDe": "Laurinstr. 70",
+        "streetIt": "Via Laurin 70",
+        "zip": "39012",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Meran",
+        "cityIt": "Merano"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Bruneck",
+        "coordinates": {
+            "long": 11.9364807796034,
+            "lat": 46.7994347
+        },
+        "structureDescriptionIt": "Ospedale di Brunico",
+        "streetDe": "Spitalstr. 11",
+        "streetIt": "Via Ospedale 11",
+        "zip": "39031",
+        "addressNameDe": "Medizinische Ambulanz",
+        "addressNameIt": "Ambulatorio medicina interna",
+        "cityDe": "Bruneck",
+        "cityIt": "Brunico"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Bozen - Nuklearmedizin",
+        "coordinates": {
+            "long": 11.3097628922548,
+            "lat": 46.4984608
+        },
+        "structureDescriptionIt": "Ospedale di Bolzano - Medicina nucleare",
+        "streetDe": "L. Böhler-Str. 5",
+        "streetIt": "Via L. Böhler 5",
+        "zip": "39100",
+        "addressNameDe": "Nuklearmedizin Ambulanz",
+        "addressNameIt": "Reparto Medicina Nucleare",
+        "cityDe": "Bozen",
+        "cityIt": "Bolzano"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz Naturns",
+        "coordinates": {
+            "long": 11.0072649,
+            "lat": 46.6493991
+        },
+        "structureDescriptionIt": "Sede di distretto Naturno",
+        "streetDe": "Gustav-Florastr. 8",
+        "streetIt": "Via Gustav Flora 8",
+        "zip": "39025",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Naturns",
+        "cityIt": "Naturno"
+    },
+    {
+        "structureDescriptionDe": "Klinik St. Anna",
+        "coordinates": {
+            "long": 11.17019,
+            "lat": 46.66891
+        },
+        "structureDescriptionIt": "Casa di cura Villa St. Anna",
+        "streetDe": "Cavourstr. 58",
+        "streetIt": "Via Cavour 58",
+        "zip": "39012",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Meran",
+        "cityIt": "Merano"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz St. Leonhard",
+        "coordinates": {
+            "long": 11.2461989,
+            "lat": 46.8129315
+        },
+        "structureDescriptionIt": "Sede di distretto S. Leonardo",
+        "streetDe": "Passeirer-str. 3",
+        "streetIt": "Via Passiria 3",
+        "zip": "39015",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "St. Leonhard",
+        "cityIt": "S. Leonardo"
+    },
+    {
+        "structureDescriptionDe": "Reha-Dienst Fagenstrasse",
+        "coordinates": {
+            "long": 11.3423977,
+            "lat": 46.5087834
+        },
+        "structureDescriptionIt": "Servizio riabilitazione fisica - Via Fago",
+        "streetDe": "Fagenstr. 14",
+        "streetIt": "Via Fago 14",
+        "zip": "39100",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Bozen",
+        "cityIt": "Bolzano"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Bozen",
+        "coordinates": {
+            "long": 11.3097628922548,
+            "lat": 46.4984608
+        },
+        "structureDescriptionIt": "Ospedale di Bolzano",
+        "streetDe": "L. Böhler-Str. 5",
+        "streetIt": "Via L. Böhler 5",
+        "zip": "39100",
+        "addressNameDe": "Poliambulatorien",
+        "addressNameIt": "Poliambulatori",
+        "cityDe": "Bozen",
+        "cityIt": "Bolzano"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Meran - Medizin",
+        "coordinates": {
+            "long": 11.1510139,
+            "lat": 46.6776007
+        },
+        "structureDescriptionIt": "Ospedale di Merano - Medicina",
+        "streetDe": "Rossinistr. 5",
+        "streetIt": "Via Rossini 5",
+        "zip": "39012",
+        "addressNameDe": "Funktionsdiagnostik Medizin, Trakt B, Erdgeschoss",
+        "addressNameIt": "Prove Funzionali di Medicina, tratto B, piano terra",
+        "cityDe": "Meran",
+        "cityIt": "Merano"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz Kaltern",
+        "coordinates": {
+            "long": 11.244321,
+            "lat": 46.4132761
+        },
+        "structureDescriptionIt": "Sede di distretto Caldaro",
+        "streetDe": "Rottenburger Platz 1",
+        "streetIt": "P.zza dei Rottenburg 1",
+        "zip": null,
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Kaltern",
+        "cityIt": "Caldaro"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz Eppan",
+        "coordinates": {
+            "long": 11.2588832,
+            "lat": 46.4574373
+        },
+        "structureDescriptionIt": "Sede di distretto Appiano",
+        "streetDe": "J.-G. Platzer-Str. 29",
+        "streetIt": "Via J. G. Platzer 29",
+        "zip": "39057",
+        "addressNameDe": "Sprengelsitz Eppan",
+        "addressNameIt": "Distretto Oltreadige",
+        "cityDe": "Eppan",
+        "cityIt": "Appiano"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz Meran",
+        "coordinates": {
+            "long": 11.16359,
+            "lat": 46.66814
+        },
+        "structureDescriptionIt": "Sede di distretto Merano",
+        "streetDe": "Romstr. 3",
+        "streetIt": "Via Roma 3",
+        "zip": "39012",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Meran",
+        "cityIt": "Merano"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Innichen",
+        "coordinates": {
+            "long": 12.28418,
+            "lat": 46.7338
+        },
+        "structureDescriptionIt": "Ospedale di San Candido",
+        "streetDe": "Freisingstr. 2",
+        "streetIt": "Via Freising 2",
+        "zip": "39038",
+        "addressNameDe": "Chirurgische Ambulanz",
+        "addressNameIt": "Ambulatorio chirurgia",
+        "cityDe": "Innichen",
+        "cityIt": "S. Candido"
+    },
+    {
+        "structureDescriptionDe": "Sprengelsitz Mals",
+        "coordinates": {
+            "long": 10.54193,
+            "lat": 46.69326
+        },
+        "structureDescriptionIt": "Sede di distretto Malles",
+        "streetDe": "Marktstr. 4",
+        "streetIt": "Via Mercato 4",
+        "zip": "39024",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Mals",
+        "cityIt": "Malles"
+    },
+    {
+        "structureDescriptionDe": "Sprengel Europa",
+        "coordinates": {
+            "long": 11.5843984,
+            "lat": 49.9237151
+        },
+        "structureDescriptionIt": "Distretto Europa",
+        "streetDe": "Palermostr. 54",
+        "streetIt": "Via Palermo 54",
+        "zip": "39100",
+        "addressNameDe": null,
+        "addressNameIt": null,
+        "cityDe": "Bozen",
+        "cityIt": "Bolzano"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Sterzing",
+        "coordinates": {
+            "long": 11.4257230298422,
+            "lat": 46.8984081
+        },
+        "structureDescriptionIt": "Ospedale di Vipiteno",
+        "streetDe": "St. Margarethen-Str. 24",
+        "streetIt": "Via S. Margherita 24",
+        "zip": "39049",
+        "addressNameDe": "Medizin Ambulanz,  Erdgeschoss",
+        "addressNameIt": "Medicina interna, Pianoterra ",
+        "cityDe": "Sterzing",
+        "cityIt": "Vipiteno"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Meran",
+        "coordinates": {
+            "long": 11.15164,
+            "lat": 46.67707
+        },
+        "structureDescriptionIt": "Ospedale di Merano",
+        "streetDe": "Rossinistr. 5",
+        "streetIt": "Via Rossini 5",
+        "zip": "39012",
+        "addressNameDe": "Funktionsdiagnostik Kardiologie",
+        "addressNameIt": "Prove Funzionali Cardiologia",
+        "cityDe": "Meran",
+        "cityIt": "Merano"
+    },
+    {
+        "structureDescriptionDe": "Krankenhaus Schlanders",
+        "coordinates": {
+            "long": 10.7838076918919,
+            "lat": 46.62685395
+        },
+        "structureDescriptionIt": "Ospedale di Silandro",
+        "streetDe": "Krankenhausstr. 3",
+        "streetIt": "Via Ospedale 3",
+        "zip": "39028",
+        "addressNameDe": "Diabetologische Ambulanz,   1. Stock  ",
+        "addressNameIt": "Ambulatorio diabetologia, 1. piano",
+        "cityDe": "Schlanders",
+        "cityIt": "Silandro"
+    }
+]

@@ -146,8 +146,13 @@
                       <br/>
                       {{ service['zip'] ~ ' ' ~ service['city'] }}
                       <br/>
-                      <a href="https://www.openstreetmap.org/search?query={{ service['structureDescription'].replace('S.','').replace('St.','') }}" target="_blank"> {{ _('Vedi sulla mappa') }}</a>
-                      <br/>
+                        {% if service['coordinates']  %}
+                            <a href="https://www.openstreetmap.org/?mlat={{ service['coordinates']['lat'] }}&mlon={{service['coordinates']['long'] }}#map=18/{{ service['coordinates']['lat'] }}/{{service['coordinates']['long'] }}" target="_blank">
+                        {%  else %}
+                             <a href="https://www.openstreetmap.org/search?query={{ service['structureDescription'].replace('S.','').replace('St.','') }}" target="_blank">
+                        {% endif %}
+                        {{ _('Vedi sulla mappa') }}</a>
+                        <br/>
                       <br/>
                       {{ _('Orario di apertura') }} : {{ service['openinghours'] }}
                       <br/>
