@@ -76,17 +76,9 @@ def index():
     # aggiungere gestione errore
 
     if keen.project_id is not None:
-        print('keen')
-        if form.validate_on_submit():
-            print('search')
-            keen.add_event("search-text", {
-                "text": form.name.data,
-            })
-        else:
-            print('view')
-            keen.add_event("view", {
-                "text": None,
-            })
+        keen.add_event("view", {
+            "text": None,
+    })
 
     resultServices = []
     services = set([])
