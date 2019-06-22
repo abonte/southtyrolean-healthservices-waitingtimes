@@ -28,6 +28,6 @@ pytz==2018.5
 requests==2.20.1
 requests-cache==0.4.13
 six==1.11.0
-urllib3==1.23
+urllib3==1.24.2
 Werkzeug==0.14.1
 WTForms==2.2.1
