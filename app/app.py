@@ -1,24 +1,94 @@
 from flask import render_template, request, abort, g, Blueprint
-from app import app, babel
+from flask import Flask
+from flask_babel import Babel
+import requests_cache
 import requests
-from .forms import SearchForm
 import datetime
 import json
 import time
 import keen
+from flask_wtf import FlaskForm
+from wtforms import StringField
+from wtforms.validators import DataRequired
+import logging
 
-bp = Blueprint('frontend', __name__, url_prefix='/<lang_code>')
-keen.project_id = app.config['KEEN_PROJECT_ID']
-keen.write_key = app.config['KEEN_WRITE_KEY']
+
+app = Flask(__name__)
+app.config.from_object('config')
+
+
+babel = Babel(app)
+
+requests_cache.install_cache('opendata_cache', expire_after=14400)
+
+_ = Blueprint('frontend', __name__, url_prefix='/<lang_code>')
+# keen.project_id = app.config['KEEN_PROJECT_ID']
+# keen.write_key = app.config['KEEN_WRITE_KEY']
 with open('structures-with-geoloc.json') as json_data:
     geocodification = json.load(json_data)
     print('geo')
 
-#GERMAN_KEYS = ['SurveyDescriptionDe', 'activityDescriptionDe', 'structureDescriptionDe', 'addressNameDe', 'streetDe',
+
+# GERMAN_KEYS = ['SurveyDescriptionDe', 'activityDescriptionDe', 'structureDescriptionDe', 'addressNameDe', 'streetDe',
 #               'cityDe', 'contactNameDe', 'mailDe', 'openinghoursDe', 'infoDe']
 
-#ITALIAN_KEYS = ['SurveyDescriptionIt', 'activityDescriptionIt', 'structureDescriptionIt', 'addressNameIt', 'streetIt',
+# ITALIAN_KEYS = ['SurveyDescriptionIt', 'activityDescriptionIt', 'structureDescriptionIt', 'addressNameIt', 'streetIt',
 #                'cityIt', 'contactNameIt', 'mailIt', 'openinghoursIt', 'infoit']
+
+
+@app.route('/', methods=('GET', 'POST'))
+@app.route('/index', methods=('GET', 'POST'))
+@app.route('/<lang_code>', methods=('GET', 'POST'))
+@app.route('/<lang_code>/index', methods=('GET', 'POST'))
+def index(lang_code=''):
+    print(f"GET /{lang_code}/index")
+    form = SearchForm()
+    now = time.ctime(int(time.time()))
+    r = requests.get('http://daten.buergernetz.bz.it/services/WaitLists_Data/json',
+                     timeout=5)
+    print("Time: {0} / Used Cache: {1}".format(now, r.from_cache))
+    if r.status_code != requests.codes.ok:
+        return render_template("index.html",
+                               title='Home',
+                               resultServices="",
+                               services="",
+                               check=False,
+                               form=form)
+
+    # to use a local copy of the data
+    # with open('../waitListsDataExample.json') as data_file:
+    #   data = json.load(data_file)
+
+    data = r.json()
+    # aggiungere gestione errore
+
+    if keen.project_id is not None:
+        keen.add_event("view", {
+            "text": None,
+        })
+
+    resultServices = []
+    services = set([])
+    for elem in data:
+        temp = elem['activityDescriptionDe'] if g.lang_code == 'de' else elem[
+            'activityDescriptionIt']
+        services.add(temp)
+        if form.validate_on_submit():
+            if _isServiceDescription(form.name.data, elem):
+                resultServices.append(elem)
+        else:
+            resultServices.append(elem)
+
+    resultServices = _add_geolocalization(resultServices)
+    resultServices = _format(resultServices) if len(resultServices) != 0 else []
+
+    return render_template("index.html",
+                           title='Home',
+                           resultServices=resultServices,
+                           services=services,
+                           check=True,
+                           locale=g.lang_code,
+                           form=form)
 
 
 @babel.localeselector
@@ -46,61 +116,10 @@ def ensure_lang_support():
     if lang_code and lang_code not in app.config['SUPPORTED_LANGUAGES'].keys():
         return abort(404)
 
-#@app.route('/', methods=('GET', 'POST'))
+
+# @app.route('/', methods=('GET', 'POST'))
 def Test():
     return render_template("test.html")
-
-@app.route('/', methods=('GET', 'POST'))
-@app.route('/index', methods=('GET', 'POST'))
-@app.route('/<lang_code>', methods=('GET', 'POST'))
-@app.route('/<lang_code>/index', methods=('GET', 'POST'))
-def index():
-    form = SearchForm()
-    now = time.ctime(int(time.time()))
-    r = requests.get('http://daten.buergernetz.bz.it/services/WaitLists_Data/json', timeout=5)
-    print("Time: {0} / Used Cache: {1}".format(now, r.from_cache))
-    if r.status_code != requests.codes.ok:
-        return render_template("index.html",
-                               title='Home',
-                               resultServices="",
-                               services="",
-                               check=False,
-                               form=form)
-
-
-    # to use a local copy of the data
-    # with open('../waitListsDataExample.json') as data_file:
-    #   data = json.load(data_file)
-
-    data = r.json()
-    # aggiungere gestione errore
-
-    if keen.project_id is not None:
-        keen.add_event("view", {
-            "text": None,
-    })
-
-    resultServices = []
-    services = set([])
-    for elem in data:
-        temp = elem['activityDescriptionDe'] if g.lang_code == 'de' else elem['activityDescriptionIt']
-        services.add(temp)
-        if form.validate_on_submit():
-            if _isServiceDescription(form.name.data, elem):
-                resultServices.append(elem)
-        else:
-            resultServices.append(elem)
-
-    resultServices = _add_geolocalization(resultServices)
-    resultServices = _format(resultServices) if len(resultServices)!=0 else []
-
-    return render_template("index.html",
-                           title='Home',
-                           resultServices=resultServices,
-                           services=services,
-                           check=True,
-                           locale=g.lang_code,
-                           form=form)
 
 
 def _format(resultServices):
@@ -110,7 +129,9 @@ def _format(resultServices):
         elem['waitingDaysPer'] = _valueProgressBar(elem, max_)
         elem = _keysForLang(elem)
         elem['waitingDays'] = elem['waitingDays'] if elem['waitingDays'] != -1 else None
-        elem['SurveyDate'] = datetime.datetime.strptime(elem['SurveyDate'], '%Y-%m-%dT%H:%M:%S').strftime('%d/%m/%y')
+        elem['SurveyDate'] = datetime.datetime.strptime(elem['SurveyDate'],
+                                                        '%Y-%m-%dT%H:%M:%S').strftime(
+            '%d/%m/%y')
         formatServices.append(elem)
     return formatServices
 
@@ -137,7 +158,8 @@ def _keysForLang(service):
 
 
 def _isServiceDescription(text, service):
-    return text.lower() in service['activityDescriptionIt'].lower() or text.lower() in service['activityDescriptionDe'].lower()
+    return text.lower() in service['activityDescriptionIt'].lower() or text.lower() in \
+           service['activityDescriptionDe'].lower()
 
 
 def _valueProgressBar(elem, max_):
@@ -149,7 +171,8 @@ def _valueProgressBar(elem, max_):
 
 
 def _findMaxWaiting(data):
-    return max([i['waitingDays'] for i in data], key=lambda i: i if i is not None else 0)
+    return max([i['waitingDays'] for i in data],
+               key=lambda i: i if i is not None else 0)
 
 
 @app.errorhandler(404)
@@ -175,3 +198,8 @@ def unhandled_exception(error):
     print('e2')
     app.logger.error('Unhandled Exception: %s', (error))
     return render_template('500.html'), 500
+
+
+class SearchForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+
