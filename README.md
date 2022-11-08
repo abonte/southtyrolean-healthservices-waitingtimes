@@ -1,5 +1,5 @@
 # Health services waiting times
-The application shows the health services waiting times in South Tyrol. It is possible to filter the different services. The application is available on [https://tempi-attesa.herokuapp.com/](https://tempi-attesa.herokuapp.com/).
+The application shows the health services waiting times in South Tyrol. It is possible to filter the different services.
 
 The data are taken from the [Open Data Alto Adige/Suedtirol/South Tyrol portal](http://dati.retecivica.bz.it/it/dataset/southtyrolean-healthservices-waitingtimes)
 
@@ -81,7 +81,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 Open Iconic — [www.useiconic.com/open](https://useiconic.com/open)
 
 Photo by [rawpixel](https://unsplash.com/photos/QIgX1ksdacw) on [Unsplash](https://unsplash.com/)
-
-
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
